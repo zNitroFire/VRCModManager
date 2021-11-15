@@ -5,6 +5,9 @@ using System.Drawing;
 
 namespace VRCModManager
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Registry
     {
         public static string SteamPath
@@ -12,8 +15,15 @@ namespace VRCModManager
             get => Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Valve\Steam", "SteamPath", null).ToString();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static string VRChatPath { get; } = GetVRChatPath();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private static string GetVRChatPath()
         {
             string vdfPath = SteamPath + @"/steamapps/libraryfolders.vdf";
