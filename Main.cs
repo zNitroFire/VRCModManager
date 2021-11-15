@@ -21,7 +21,11 @@ namespace VRCModManager
         public static ConsoleControl.ConsoleControl FormConsole { get; set; }
         public static Thread Thread { get; } = Thread.CurrentThread;
         public static float Version { get; } = 0.1f;
+        public static List<Mods> AvailableMods { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Main()
         {
             InitializeComponent();
@@ -37,20 +41,33 @@ namespace VRCModManager
                 InstalledModsListBox.Items.Add(mod);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void FetchAvailableMods()
         {
-            List<Mods> availableMods = JsonSerializer.Deserialize<List<Mods>>(ModList.JSON, 
+            AvailableMods = JsonSerializer.Deserialize<List<Mods>>(ModList.JSON,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-            for(int i = 0; i < availableMods.Count; i++)
-                AvailableModsListBox.Items.Add(availableMods[i].Name);
+            for (int i = 0; i < AvailableMods.Count; i++)
+                AvailableModsListBox.Items.Add(AvailableMods[i].name);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FConsole_Load(object sender, EventArgs e)
         {
-            FormConsole.WriteOutputLn(Text + Util.ConsoleDivider, Color.Cyan);
+            FormConsole.WriteOutputLn(Text + "\n             https://discord.gg/snstr" + Util.ConsoleDivider, Color.Cyan);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InstalledModsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -76,6 +93,43 @@ namespace VRCModManager
             catch (NullReferenceException ex) { FormConsole.WriteOutputLn("\n[ERROR]: " + ex.Message, Color.Red); }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AvailableModsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                for(int i = 0; i < AvailableMods.Count; i++)
+                {
+                    if (AvailableMods[i].name == AvailableModsListBox.SelectedItem.ToString())
+                    {
+                        FormConsole.WriteOutputLn("\n" + Util.ConsoleDivider + "\n" + AvailableModsListBox.SelectedItem.ToString() + ":" + Util.ConsoleDivider +
+                            "\nVersion: "             + AvailableMods[i].versions[0]._version       +
+                            "\nVRChat Version: "      + AvailableMods[i].versions[0].vrchatversion  +
+                            "\nMelonloader Version: " + AvailableMods[i].versions[0].loaderversion  +
+                            "\nType: "                + AvailableMods[i].versions[0].modtype        +
+                            "\nAuthor: "              + AvailableMods[i].versions[0].author         +
+                            "\nMod Description: "     + AvailableMods[i].versions[0].description    +
+                            "\nRepository: "          + AvailableMods[i].versions[0].sourcelink     +
+                            "\nLast Updated: "        + AvailableMods[i].versions[0].updatedate     +
+                            "\nBase64 Hash: "         + AvailableMods[i].versions[0].hash           +
+                            "\nChangelog: "           + AvailableMods[i].versions[0].changelog      );
+
+                        FormConsole.InternalRichTextBox.ScrollToCaret();
+                    }
+                }
+            }
+            catch (NullReferenceException ex) { FormConsole.WriteOutputLn("\n[ERROR]: " + ex.Message, Color.Red); }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RefreshPictureBox_Click(object sender, EventArgs e)
         {
             FormConsole.ClearOutput();
@@ -87,6 +141,11 @@ namespace VRCModManager
             InstalledModsListBox.Refresh();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LaunchVRChatButton_Click(object sender, EventArgs e)
         {
             Process vrc = new Process();
@@ -94,6 +153,11 @@ namespace VRCModManager
             vrc.Start();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DiscordToolStripMenuItem_Click(object sender, EventArgs e) =>
             Process.Start("cmd", $"/{Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)).Substring(0, 1)} start https://discord.com/invite/snstr/");
     }

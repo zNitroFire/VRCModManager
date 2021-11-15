@@ -138,7 +138,7 @@ namespace VRCModManager
             this.ModsTabControl.Controls.Add(this.UpdatesRequiredTab);
             this.ModsTabControl.Location = new System.Drawing.Point(0, -1);
             this.ModsTabControl.Name = "ModsTabControl";
-            this.ModsTabControl.SelectedIndex = 0;
+            this.ModsTabControl.SelectedIndex = 1;
             this.ModsTabControl.Size = new System.Drawing.Size(344, 361);
             this.ModsTabControl.TabIndex = 2;
             this.ModsTabControl.Tabs.Add(this.InstalledModsTab);
@@ -191,6 +191,7 @@ namespace VRCModManager
             this.AvailableModsListBox.Name = "AvailableModsListBox";
             this.AvailableModsListBox.Size = new System.Drawing.Size(347, 270);
             this.AvailableModsListBox.TabIndex = 0;
+            this.AvailableModsListBox.SelectedIndexChanged += new System.EventHandler(this.AvailableModsListBox_SelectedIndexChanged);
             // 
             // UpdatesRequiredTab
             // 
