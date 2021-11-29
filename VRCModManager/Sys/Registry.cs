@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace VRCModManager
+namespace NitroFire.VRCModManager
 {
     /// <summary>
     /// 
@@ -18,7 +18,7 @@ namespace VRCModManager
         /// <summary>
         /// 
         /// </summary>
-        public static string VRChatPath { get; } = GetVRChatPath();
+        public static string VRChatPath { get => GetVRChatPath(); }
 
         /// <summary>
         /// 

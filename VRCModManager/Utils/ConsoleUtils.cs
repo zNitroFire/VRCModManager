@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace VRCModManager
+namespace NitroFire.VRCModManager
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class Util
+    public static class ConsoleUtils
     {
         public static string ConsoleDivider { get; } = Environment.NewLine + "--------------------------------------------------";
         
