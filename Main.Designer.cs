@@ -1,5 +1,5 @@
 ﻿
-namespace VRCModManager
+namespace NitroFire.VRCModManager
 {
     partial class Main
     {
@@ -76,7 +76,7 @@ namespace VRCModManager
             // RefreshPictureBox
             // 
             this.RefreshPictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.RefreshPictureBox.BackgroundImage = global::VRCModManager.Properties.Resources.RefreshButton;
+            this.RefreshPictureBox.BackgroundImage = global::NitroFire.VRCModManager.Properties.Resources.RefreshButton;
             this.RefreshPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.RefreshPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RefreshPictureBox.InitialImage = null;
@@ -96,6 +96,7 @@ namespace VRCModManager
             this.UninstallModButton.Size = new System.Drawing.Size(171, 38);
             this.UninstallModButton.TabIndex = 6;
             this.UninstallModButton.Text = "Uninstall Selected Mod";
+            this.UninstallModButton.Click += new System.EventHandler(this.UninstallModButton_Click);
             // 
             // InstallModButton
             // 
@@ -106,6 +107,7 @@ namespace VRCModManager
             this.InstallModButton.Size = new System.Drawing.Size(171, 38);
             this.InstallModButton.TabIndex = 5;
             this.InstallModButton.Text = "Install Selected Mod";
+            this.InstallModButton.Click += new System.EventHandler(this.InstallModButton_Click);
             // 
             // LaunchVRChatButton
             // 
@@ -138,12 +140,13 @@ namespace VRCModManager
             this.ModsTabControl.Controls.Add(this.UpdatesRequiredTab);
             this.ModsTabControl.Location = new System.Drawing.Point(0, -1);
             this.ModsTabControl.Name = "ModsTabControl";
-            this.ModsTabControl.SelectedIndex = 1;
+            this.ModsTabControl.SelectedIndex = 0;
             this.ModsTabControl.Size = new System.Drawing.Size(344, 361);
             this.ModsTabControl.TabIndex = 2;
             this.ModsTabControl.Tabs.Add(this.InstalledModsTab);
             this.ModsTabControl.Tabs.Add(this.AvailableModsTab);
             this.ModsTabControl.Tabs.Add(this.UpdatesRequiredTab);
+            this.ModsTabControl.TabClick += new System.EventHandler<Manina.Windows.Forms.TabMouseEventArgs>(this.RefreshPictureBox_Click);
             // 
             // InstalledModsTab
             // 
@@ -174,9 +177,9 @@ namespace VRCModManager
             this.AvailableModsTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.AvailableModsTab.Controls.Add(this.AvailableModsListBox);
             this.AvailableModsTab.ForeColor = System.Drawing.Color.Silver;
-            this.AvailableModsTab.Location = new System.Drawing.Point(0, 23);
+            this.AvailableModsTab.Location = new System.Drawing.Point(0, 0);
             this.AvailableModsTab.Name = "AvailableModsTab";
-            this.AvailableModsTab.Size = new System.Drawing.Size(344, 339);
+            this.AvailableModsTab.Size = new System.Drawing.Size(0, 0);
             this.AvailableModsTab.Text = "Available Mods";
             // 
             // AvailableModsListBox

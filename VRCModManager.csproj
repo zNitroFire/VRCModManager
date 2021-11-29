@@ -4,8 +4,9 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <ApplicationIcon>Discord_NoHandz_PFP.ico</ApplicationIcon>
+    <ApplicationIcon>VRCModManager\Resources\Icon.ico</ApplicationIcon>
     <StartupObject />
+    <RootNamespace>NitroFire.VRCModManager</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
