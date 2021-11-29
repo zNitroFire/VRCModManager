@@ -3,7 +3,7 @@
  * Last Updated 11/23/2021 8:37PM EST
  * https://discord.gg/snstr
  * 
- * P.S. Fuck you Rin for selling your soul to Knah and the VRChat developers ;)
+ * P.S. Fuck you Rin for going back on everything you stood for ;) [Edited]
  */
 using System;
 using System.Windows.Forms;
