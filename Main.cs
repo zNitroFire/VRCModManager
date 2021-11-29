@@ -76,8 +76,10 @@ namespace NitroFire.VRCModManager
         {
             try
             {
+                // TODO: Plugins are broken atm because of the path, fix the installed mod version
+                //       and check the 'mod.Type' to verify whether or not its a mod or a plugin.
                 FileVersionInfo selectedModVersion = FileVersionInfo.GetVersionInfo(Registry.VRChatPath +
-                @"\Mods\" + InstalledModsListBox.SelectedItem.ToString());
+                    @"\Mods\" + InstalledModsListBox.SelectedItem.ToString());
 
                 FormConsole.WriteOutputLn(ConsoleUtils.ConsoleDivider + InstalledModsListBox.SelectedItem.ToString() + ":" + ConsoleUtils.ConsoleDivider +
                     "\nVersion: " + selectedModVersion.FileVersion.ToString() +

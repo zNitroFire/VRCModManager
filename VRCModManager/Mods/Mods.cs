@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text.Json;
 
@@ -20,18 +21,17 @@ namespace NitroFire.VRCModManager
         public static List<string> GetInstalledMods()
         {
             List<string> Mods = new List<string>();
-            if(Directory.Exists(Registry.VRChatPath + @"\Mods") && Directory.Exists(Registry.VRChatPath + @"\Plugins"))
+            if (Directory.Exists(Registry.VRChatPath + @"\Mods") && Directory.Exists(Registry.VRChatPath + @"\Plugins"))
             {
-                
+                foreach (string mod in Directory.GetFiles(Registry.VRChatPath + @"\Mods", "*.dll"))
+                    Mods.Add(mod.Substring(Registry.VRChatPath.Length + 6).Trim());
 
-                //foreach (string mod in Directory.GetFiles(Registry.VRChatPath + @"\Mods"))
-                //   Mods.Add(mod.Substring(Registry.VRChatPath.Length + 6).Trim());
-
-                //foreach (string mod in Directory.GetFiles(Registry.VRChatPath + @"\Plugins"))
-                //    Mods.Add(mod.Substring(Registry.VRChatPath.Length + 6).Trim());
+                // TODO: Uncomment this when plugins are fixed!
+                //foreach (string mod in Directory.GetFiles(Registry.VRChatPath + @"\Plugins", "*.dll"))
+                //    Mods.Add(mod.Substring(Registry.VRChatPath.Length + 9).Trim());
             }
 
-            return Mods;
+            return Mods.OrderBy(x => x).ToList();
         }
 
         private bool GetIsInstalled() =>
