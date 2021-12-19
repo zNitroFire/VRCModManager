@@ -41,7 +41,6 @@ namespace NitroFire.VRCModManager
             this.InstalledModsListBox = new System.Windows.Forms.ListBox();
             this.AvailableModsTab = new Manina.Windows.Forms.Tab();
             this.AvailableModsListBox = new System.Windows.Forms.ListBox();
-            this.UpdatesRequiredTab = new Manina.Windows.Forms.Tab();
             this.ConsolePanel = new System.Windows.Forms.Panel();
             this.FConsole = new ConsoleControl.ConsoleControl();
             this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
@@ -89,7 +88,7 @@ namespace NitroFire.VRCModManager
             // 
             // UninstallModButton
             // 
-            this.UninstallModButton.Font = new System.Drawing.Font("Hack", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.UninstallModButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.UninstallModButton.Location = new System.Drawing.Point(179, 348);
             this.UninstallModButton.Name = "UninstallModButton";
             this.UninstallModButton.Padding = new System.Windows.Forms.Padding(5);
@@ -100,7 +99,7 @@ namespace NitroFire.VRCModManager
             // 
             // InstallModButton
             // 
-            this.InstallModButton.Font = new System.Drawing.Font("Hack", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.InstallModButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.InstallModButton.Location = new System.Drawing.Point(3, 348);
             this.InstallModButton.Name = "InstallModButton";
             this.InstallModButton.Padding = new System.Windows.Forms.Padding(5);
@@ -112,7 +111,7 @@ namespace NitroFire.VRCModManager
             // LaunchVRChatButton
             // 
             this.LaunchVRChatButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.LaunchVRChatButton.Font = new System.Drawing.Font("Hack", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            this.LaunchVRChatButton.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
             this.LaunchVRChatButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.LaunchVRChatButton.Location = new System.Drawing.Point(3, 393);
             this.LaunchVRChatButton.Name = "LaunchVRChatButton";
@@ -137,15 +136,13 @@ namespace NitroFire.VRCModManager
             this.ModsTabControl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ModsTabControl.Controls.Add(this.InstalledModsTab);
             this.ModsTabControl.Controls.Add(this.AvailableModsTab);
-            this.ModsTabControl.Controls.Add(this.UpdatesRequiredTab);
             this.ModsTabControl.Location = new System.Drawing.Point(0, -1);
             this.ModsTabControl.Name = "ModsTabControl";
             this.ModsTabControl.SelectedIndex = 0;
             this.ModsTabControl.Size = new System.Drawing.Size(344, 361);
-            this.ModsTabControl.TabIndex = 2;
+            this.ModsTabControl.TabIndex = 1;
             this.ModsTabControl.Tabs.Add(this.InstalledModsTab);
             this.ModsTabControl.Tabs.Add(this.AvailableModsTab);
-            this.ModsTabControl.Tabs.Add(this.UpdatesRequiredTab);
             this.ModsTabControl.TabClick += new System.EventHandler<Manina.Windows.Forms.TabMouseEventArgs>(this.RefreshPictureBox_Click);
             // 
             // InstalledModsTab
@@ -162,13 +159,13 @@ namespace NitroFire.VRCModManager
             // 
             this.InstalledModsListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.InstalledModsListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.InstalledModsListBox.Font = new System.Drawing.Font("Hack", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.InstalledModsListBox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.InstalledModsListBox.ForeColor = System.Drawing.Color.Silver;
             this.InstalledModsListBox.FormattingEnabled = true;
-            this.InstalledModsListBox.ItemHeight = 18;
+            this.InstalledModsListBox.ItemHeight = 20;
             this.InstalledModsListBox.Location = new System.Drawing.Point(0, 6);
             this.InstalledModsListBox.Name = "InstalledModsListBox";
-            this.InstalledModsListBox.Size = new System.Drawing.Size(342, 288);
+            this.InstalledModsListBox.Size = new System.Drawing.Size(342, 280);
             this.InstalledModsListBox.Sorted = true;
             this.InstalledModsListBox.TabIndex = 0;
             this.InstalledModsListBox.SelectedIndexChanged += new System.EventHandler(this.InstalledModsListBox_SelectedIndexChanged);
@@ -187,25 +184,16 @@ namespace NitroFire.VRCModManager
             // 
             this.AvailableModsListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.AvailableModsListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.AvailableModsListBox.Font = new System.Drawing.Font("Hack", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AvailableModsListBox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.AvailableModsListBox.ForeColor = System.Drawing.Color.Silver;
             this.AvailableModsListBox.FormattingEnabled = true;
-            this.AvailableModsListBox.ItemHeight = 18;
+            this.AvailableModsListBox.ItemHeight = 20;
             this.AvailableModsListBox.Location = new System.Drawing.Point(-1, 1);
             this.AvailableModsListBox.Name = "AvailableModsListBox";
-            this.AvailableModsListBox.Size = new System.Drawing.Size(347, 270);
+            this.AvailableModsListBox.Size = new System.Drawing.Size(347, 260);
             this.AvailableModsListBox.Sorted = true;
             this.AvailableModsListBox.TabIndex = 0;
             this.AvailableModsListBox.SelectedIndexChanged += new System.EventHandler(this.AvailableModsListBox_SelectedIndexChanged);
-            // 
-            // UpdatesRequiredTab
-            // 
-            this.UpdatesRequiredTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.UpdatesRequiredTab.ForeColor = System.Drawing.Color.Silver;
-            this.UpdatesRequiredTab.Location = new System.Drawing.Point(0, 0);
-            this.UpdatesRequiredTab.Name = "UpdatesRequiredTab";
-            this.UpdatesRequiredTab.Size = new System.Drawing.Size(0, 0);
-            this.UpdatesRequiredTab.Text = "Updates Required";
             // 
             // ConsolePanel
             // 
@@ -220,7 +208,7 @@ namespace NitroFire.VRCModManager
             // 
             this.FConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.FConsole.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.FConsole.Font = new System.Drawing.Font("Hack", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FConsole.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FConsole.ForeColor = System.Drawing.Color.White;
             this.FConsole.IsInputEnabled = false;
             this.FConsole.Location = new System.Drawing.Point(-2, -3);
@@ -310,7 +298,6 @@ namespace NitroFire.VRCModManager
         private Manina.Windows.Forms.TabControl ModsTabControl;
         private Manina.Windows.Forms.Tab InstalledModsTab;
         private Manina.Windows.Forms.Tab AvailableModsTab;
-        private Manina.Windows.Forms.Tab UpdatesRequiredTab;
         private DarkUI.Controls.DarkButton LaunchVRChatButton;
         private System.Windows.Forms.ToolStripMenuItem AuthorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DiscordToolStripMenuItem;
