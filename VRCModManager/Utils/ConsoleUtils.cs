@@ -9,7 +9,7 @@ namespace NitroFire.VRCModManager
     /// </summary>
     public static class ConsoleUtils
     {
-        public static string ConsoleDivider { get; } = Environment.NewLine + "--------------------------------------------------";
+        public static string ConsoleDivider { get; } = Environment.NewLine + "------------------------------------------------------------";
         
         /// <summary>
         /// 
