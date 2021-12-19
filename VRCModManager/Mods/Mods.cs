@@ -18,20 +18,32 @@ namespace NitroFire.VRCModManager
         public Versions[] Versions { get; set; }
         public bool IsInstalled { get => GetIsInstalled(); set => _isInstalled = value; }
 
-        public static List<string> GetInstalledMods()
+        public static List<Mods> GetInstalledMods()
         {
-            List<string> Mods = new List<string>();
-            if (Directory.Exists(Registry.VRChatPath + @"\Mods") && Directory.Exists(Registry.VRChatPath + @"\Plugins"))
+            List<Mods> mods = new List<Mods>();
+            if (Directory.Exists($@"{Registry.VRChatPath}\Mods") && Directory.Exists($@"{Registry.VRChatPath}\Plugins"))
             {
-                foreach (string mod in Directory.GetFiles(Registry.VRChatPath + @"\Mods", "*.dll"))
-                    Mods.Add(mod.Substring(Registry.VRChatPath.Length + 6).Trim());
+                //Mods.Add(mod.Substring(Registry.VRChatPath.Length + 6).Trim());
+                foreach((Mods mod, int i) in Main.AvailableMods.Select((value, i) => (value, i)))
+                {
+                    if(File.Exists($@"{Registry.VRChatPath}\Mods\{mod.Name}.dll"))
+                    {
+                        mods.Add(mod);
+                        Main.FormConsole.WriteOutputLn($"{mod.Name} was added to the installed mods list!");
+                        if (!mod.Name.Equals(Main.AvailableMods[@i].Versions[0].Name))
+                        {
+                            Main.FormConsole.WriteOutputLn($"{mod.Name} wasn't found on the VRCMG JSON MasterList!" +
+                                $" No information can be provided about this file!");
+                        }
+                    }
+                }
 
-                // TODO: Uncomment this when plugins are fixed!
-                //foreach (string mod in Directory.GetFiles(Registry.VRChatPath + @"\Plugins", "*.dll"))
+                // TODO: Rewrite this when plugins are fixed!
+                //foreach (string mod in Directory.GetFiles($@"{Registry.VRChatPath}\Plugins", "*.dll"))
                 //    Mods.Add(mod.Substring(Registry.VRChatPath.Length + 9).Trim());
             }
 
-            return Mods.OrderBy(x => x).ToList();
+            return mods;
         }
 
         private bool GetIsInstalled() =>
