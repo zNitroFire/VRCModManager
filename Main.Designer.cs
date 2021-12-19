@@ -169,6 +169,7 @@ namespace NitroFire.VRCModManager
             this.InstalledModsListBox.Location = new System.Drawing.Point(0, 6);
             this.InstalledModsListBox.Name = "InstalledModsListBox";
             this.InstalledModsListBox.Size = new System.Drawing.Size(342, 288);
+            this.InstalledModsListBox.Sorted = true;
             this.InstalledModsListBox.TabIndex = 0;
             this.InstalledModsListBox.SelectedIndexChanged += new System.EventHandler(this.InstalledModsListBox_SelectedIndexChanged);
             // 
@@ -177,9 +178,9 @@ namespace NitroFire.VRCModManager
             this.AvailableModsTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.AvailableModsTab.Controls.Add(this.AvailableModsListBox);
             this.AvailableModsTab.ForeColor = System.Drawing.Color.Silver;
-            this.AvailableModsTab.Location = new System.Drawing.Point(0, 23);
+            this.AvailableModsTab.Location = new System.Drawing.Point(0, 0);
             this.AvailableModsTab.Name = "AvailableModsTab";
-            this.AvailableModsTab.Size = new System.Drawing.Size(344, 339);
+            this.AvailableModsTab.Size = new System.Drawing.Size(0, 0);
             this.AvailableModsTab.Text = "Available Mods";
             // 
             // AvailableModsListBox

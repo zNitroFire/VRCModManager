@@ -5,6 +5,7 @@
  * 
  * P.S. Fuck you Rin for going back on everything you stood for ;) [Edited]
  */
+
 using System;
 using System.Windows.Forms;
 using System.Drawing;
@@ -15,6 +16,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Linq;
 using System.Net;
+
 using NitroFire.VRCModManager.VRCModManager.Utils;
 
 namespace NitroFire.VRCModManager
@@ -23,7 +25,7 @@ namespace NitroFire.VRCModManager
     {
         public static ConsoleControl.ConsoleControl FormConsole { get; set; }
         public static Thread Thread { get; } = Thread.CurrentThread;
-        public static float Version { get; } = 0.1f;
+        public static float Version { get; } = 0.2f;
         public static List<Mods> AvailableMods { get; set; }
 
         /// <summary>
@@ -40,8 +42,8 @@ namespace NitroFire.VRCModManager
             Text = $"VRCModManager v{Version} - by NitroFire and SilentIsHere";
 
             FetchAvailableMods();
-            foreach (string mod in Mods.GetInstalledMods())
-                InstalledModsListBox.Items.Add(mod);
+            foreach (Mods mod in Mods.GetInstalledMods())
+                InstalledModsListBox.Items.Add(mod.Name);
         }
 
         /// <summary>
@@ -52,6 +54,7 @@ namespace NitroFire.VRCModManager
             AvailableModsListBox.Items.Clear();
             AvailableMods = JsonSerializer.Deserialize<List<Mods>>(ModList.JSON,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            AvailableMods = AvailableMods.OrderBy(m => m.Name).ToList();
 
             foreach ((object mod, int i) in AvailableMods.Select((value, i) => (value, i)))
                 AvailableModsListBox.Items.Add(AvailableMods[@i].Name);
@@ -79,23 +82,25 @@ namespace NitroFire.VRCModManager
                 // TODO: Plugins are broken atm because of the path, fix the installed mod version
                 //       and check the 'mod.Type' to verify whether or not its a mod or a plugin.
                 FileVersionInfo selectedModVersion = FileVersionInfo.GetVersionInfo(Registry.VRChatPath +
-                    @"\Mods\" + InstalledModsListBox.SelectedItem.ToString());
+                    @"\Mods\" + InstalledModsListBox.SelectedItem.ToString() + ".dll");
 
-                FormConsole.WriteOutputLn(ConsoleUtils.ConsoleDivider + InstalledModsListBox.SelectedItem.ToString() + ":" + ConsoleUtils.ConsoleDivider +
-                    "\nVersion: " + selectedModVersion.FileVersion.ToString() +
-                    "\nVRChat Version: " + "null" +
-                    "\nMelonloader Version: " + "null" +
-                    "\nType: " + "null" +
-                    "\nAuthor: " + "null" +
-                    "\nMod Description: " + "null" +
-                    "\nFile Description: " + selectedModVersion.FileDescription.ToString() +
-                    "\nRepository: " + "null" +
-                    "\nLast Updated: " + "null" +
-                    "\nBase64 Hash: " + "null" +
-                    "\nChangelog: " + "null" +
-                    "\nInstall Status: " + "null");
+                for (int i = 0; i < AvailableMods.Count; i++)
+                {
+                    FormConsole.WriteOutputLn("\n" + ConsoleUtils.ConsoleDivider + "\n" + AvailableModsListBox.SelectedItem.ToString() + ":" + ConsoleUtils.ConsoleDivider +
+                    "\nVersion: " + AvailableMods[i].Versions[0]._Version +
+                    "\nVRChat Version: " + AvailableMods[i].Versions[0].VRChatVersion +
+                    "\nMelonloader Version: " + AvailableMods[i].Versions[0].LoaderVersion +
+                    "\nType: " + AvailableMods[i].Versions[0].ModType +
+                    "\nAuthor: " + AvailableMods[i].Versions[0].Author +
+                    "\nMod Description: " + AvailableMods[i].Versions[0].Description +
+                    "\nRepository: " + AvailableMods[i].Versions[0].SourceLink +
+                    "\nLast Updated: " + AvailableMods[i].Versions[0].UpdateDate +
+                    "\nBase64 Hash: " + AvailableMods[i].Versions[0].Hash +
+                    "\nChangelog: " + AvailableMods[i].Versions[0].Changelog +
+                    "\nInstall Status: " + AvailableMods[i].IsInstalled);
 
-                FormConsole.InternalRichTextBox.ScrollToCaret();
+                    FormConsole.InternalRichTextBox.ScrollToCaret();
+                }  
             }
             catch (NullReferenceException ex) { FormConsole.WriteOutputLn("\n[ERROR]: " + ex.Message, Color.Red); }
         }
@@ -183,8 +188,8 @@ namespace NitroFire.VRCModManager
             FormConsole.WriteOutputLn(Text + ConsoleUtils.ConsoleDivider, Color.Cyan);
 
             InstalledModsListBox.Items.Clear();
-            foreach (string mod in Mods.GetInstalledMods())
-                InstalledModsListBox.Items.Add(mod);
+            foreach (Mods mod in Mods.GetInstalledMods())
+                InstalledModsListBox.Items.Add(mod.Name);
             InstalledModsListBox.Refresh();
         }
 
@@ -196,7 +201,7 @@ namespace NitroFire.VRCModManager
         private void LaunchVRChatButton_Click(object sender, EventArgs e)
         {
             Process vrc = new Process();
-            vrc.StartInfo.FileName = Registry.VRChatPath + @"\vrchat.exe";
+            vrc.StartInfo.FileName = $@"{Registry.VRChatPath}\vrchat.exe";
             vrc.Start();
         }
 
