@@ -23,13 +23,11 @@ namespace NitroFire.VRCModManager
             List<Mods> mods = new List<Mods>();
             if (Directory.Exists($@"{Registry.VRChatPath}\Mods") && Directory.Exists($@"{Registry.VRChatPath}\Plugins"))
             {
-                //Mods.Add(mod.Substring(Registry.VRChatPath.Length + 6).Trim());
                 foreach((Mods mod, int i) in Main.AvailableMods.Select((value, i) => (value, i)))
                 {
                     if(File.Exists($@"{Registry.VRChatPath}\Mods\{mod.Name}.dll"))
                     {
                         mods.Add(mod);
-                        Main.FormConsole.WriteOutputLn($"{mod.Name} was added to the installed mods list!");
                         if (!mod.Name.Equals(Main.AvailableMods[@i].Versions[0].Name))
                         {
                             Main.FormConsole.WriteOutputLn($"{mod.Name} wasn't found on the VRCMG JSON MasterList!" +
