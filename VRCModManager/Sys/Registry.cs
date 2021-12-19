@@ -26,7 +26,7 @@ namespace NitroFire.VRCModManager
         /// <returns></returns>
         private static string GetVRChatPath()
         {
-            string vdfPath = SteamPath + @"/steamapps/libraryfolders.vdf";
+            string vdfPath = $@"{SteamPath}/steamapps/libraryfolders.vdf";
             if (File.Exists(vdfPath))
             {
                 try
@@ -38,7 +38,7 @@ namespace NitroFire.VRCModManager
 
                     foreach (string libraryPath in allPaths)
                     {
-                        string subStr = (libraryPath + @"\\steamapps\\common\\VRChat")
+                        string subStr = ($@"{libraryPath}\\steamapps\\common\\VRChat")
                             .Substring(libraryPath.IndexOf(":\\") - 3)
                             .Replace("\"", "")
                             .Replace(@"\\", @"\")
