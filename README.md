@@ -1,5 +1,5 @@
 # VRCModManager
-![](https://cdn.discordapp.com/attachments/916749407968456845/922235705692917830/unknown.png)
+![](https://cdn.discordapp.com/attachments/909635987288752158/909677204558970901/unknown.png)
 
 ## Introduction
 This project provides an all in one application to install/uninstall VRChat mods using VRChat Modding Group's (VRCMG) API. This project also serves as an alternative to PogManager.
