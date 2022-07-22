@@ -1,8 +1,6 @@
-## VRCModManager
-![](https://cdn.discordapp.com/attachments/909635987288752158/909677204558970901/unknown.png)
-
-# Abandonded Project Warning
-The code in this repository is now non-functional due to a change in the VRCMG API and I don't really plan on continuing the project, I recommend using something like MelonAssistant which serves as the same type of application but is actively being worked on. Feel free to use any code from this in your Projects however.
+# VRCModManager
+## Abandonded Project Warning
+The code in this repository is now non-functional due to a change in the VRCMG API and I don't really plan on continuing the project, I recommend using something like VRCMelonAssistant which serves as the same type of application but is actively being worked on. Feel free to use any code from this in your Projects however.
 
 ## Introduction
 This project provides an all in one application to install/uninstall VRChat mods using VRChat Modding Group's (VRCMG) API. This project also serves as an alternative to PogManager.
